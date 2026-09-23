@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journey Bar Component</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Roboto', Arial, sans-serif; background: transparent; padding: 40px; }
+
+/* ── Journey Bar ── */
+.journey-bar{background:linear-gradient(135deg,#0C002E 0%,#1a0545 60%,#0d1a3a 100%);border-radius:20px;padding:28px 40px;margin-bottom:28px;display:flex;align-items:center;gap:40px;box-shadow:0 12px 48px rgba(12,0,46,.4),inset 0 1px 0 rgba(255,255,255,.08);position:relative;overflow:hidden;}
+.journey-bar::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(63,215,236,.07) 0%,transparent 60%);pointer-events:none;}
+.jb-left{flex-shrink:0;border-right:1px solid rgba(255,255,255,.08);padding-right:36px;}
+.jb-eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(63,215,236,.85);margin-bottom:6px;}
+.jb-heading{font-family:Georgia,serif;font-size:24px;font-weight:500;color:#fff;line-height:1;}
+.jb-track{display:flex;align-items:center;flex:1;position:relative;}
+.jb-step{display:flex;flex-direction:column;align-items:center;gap:12px;flex:1;position:relative;}
+.jb-step:not(:last-child)::after{content:'';position:absolute;top:58px;left:calc(50% + 22px);right:calc(-50% + 22px);height:2px;background:rgba(255,255,255,.1);z-index:0;}
+.jb-step.active:not(:last-child)::after{background:linear-gradient(90deg,rgba(63,215,236,.6),rgba(63,215,236,.1));}
+.jb-pin{display:flex;flex-direction:column;align-items:center;gap:3px;white-space:nowrap;margin-bottom:4px;}
+.jb-pin-label{background:#3FD7EC;color:#0C002E;font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;padding:4px 12px;border-radius:99px;box-shadow:0 3px 12px rgba(63,215,236,.5);}
+.jb-pin-arrow{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:7px solid #3FD7EC;}
+.jb-pin-spacer{height:27px;}
+.jb-node{width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);position:relative;z-index:1;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;font-weight:700;color:rgba(255,255,255,.35);}
+.jb-step.active .jb-node{width:72px;height:72px;background:#3FD7EC;border:3px solid #fff;color:#0C002E;font-size:26px;font-weight:900;box-shadow:0 0 0 8px rgba(63,215,236,.2),0 0 0 16px rgba(63,215,236,.08),0 0 36px rgba(63,215,236,.45);animation:jb-pulse 2.5s ease-in-out infinite;}
+@keyframes jb-pulse{0%,100%{box-shadow:0 0 0 8px rgba(63,215,236,.2),0 0 0 16px rgba(63,215,236,.08),0 0 36px rgba(63,215,236,.45);}50%{box-shadow:0 0 0 11px rgba(63,215,236,.15),0 0 0 22px rgba(63,215,236,.05),0 0 44px rgba(63,215,236,.55);}}
+.jb-step-info{text-align:center;}
+.jb-node-label{font-size:13px;font-weight:600;color:rgba(255,255,255,.4);line-height:1.3;}
+.jb-node-sub{font-size:11px;font-weight:500;color:rgba(255,255,255,.22);letter-spacing:.5px;margin-top:3px;}
+.jb-step.active .jb-node-label{color:#fff;font-weight:700;font-size:16px;}
+.jb-step.active .jb-node-sub{color:rgba(63,215,236,.85);font-size:12px;}
+</style>
+</head>
+<body>
+
+<div class="journey-bar">
+  <div class="jb-left">
+    <div class="jb-eyebrow">Learning Pathway</div>
+    <div class="jb-heading">Your Progress</div>
+  </div>
+  <div class="jb-track">
+
+    <div class="jb-step active">
+      <div class="jb-pin">
+        <span class="jb-pin-label">You are here</span>
+        <span class="jb-pin-arrow"></span>
+      </div>
+      <div class="jb-node">1</div>
+      <div class="jb-step-info">
+        <div class="jb-node-label">Foundation</div>
+        <div class="jb-node-sub">Graduate Level</div>
+      </div>
+    </div>
+
+    <div class="jb-step">
+      <div class="jb-pin-spacer"></div>
+      <div class="jb-node">2</div>
+      <div class="jb-step-info">
+        <div class="jb-node-label">Practitioner</div>
+        <div class="jb-node-sub">Junior Level</div>
+      </div>
+    </div>
+
+    <div class="jb-step">
+      <div class="jb-pin-spacer"></div>
+      <div class="jb-node">3</div>
+      <div class="jb-step-info">
+        <div class="jb-node-label">Advanced</div>
+        <div class="jb-node-sub">Intermediate Level</div>
+      </div>
+    </div>
+
+    <div class="jb-step">
+      <div class="jb-pin-spacer"></div>
+      <div class="jb-node">4</div>
+      <div class="jb-step-info">
+        <div class="jb-node-label">Expert</div>
+        <div class="jb-node-sub">Senior Level</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
